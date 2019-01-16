@@ -2,7 +2,7 @@ import { REQUEST_BOOKS_LIST, RECEIVE_BOOKS_LIST, LOG_ERROR_BOOK } from '../types
 
 export const bookInitialState = {
   isFetching: false,
-  books: [],
+  books: null,
   bookError: null
 }
 const bookReducer = (state = bookInitialState, action) => {

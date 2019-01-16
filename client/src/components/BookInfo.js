@@ -39,7 +39,7 @@ const BookInfo = ({ bookData, resetExpandedBook, error }) => {
                 <span className="font-weight-bold">Published Date: </span>
                 {`${bookData.publication_day}/${
                     bookData.publication_month
-                    }/${bookData.c}`}
+                    }/${bookData.publication_year}`}
                 .{" "}
                 <a
                     href={`https://www.goodreads.com/book/show/${

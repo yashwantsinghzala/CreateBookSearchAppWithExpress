@@ -46,7 +46,7 @@ describe('actions', () => {
 describe('book reducer', () => {
   let initialState = {
     isFetching: false,
-    books: [],
+    books: null,
     bookError: null
   }
   it('should return the initial state', () => {

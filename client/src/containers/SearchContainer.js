@@ -80,9 +80,11 @@ class SearchContainer extends Component {
               (bookError && (
                 <p className="text-danger">{bookError}</p>
               )) ||
-              <AllResultContainer
-                books={books}
-              />
+              (books && books.length === 0 ?
+                <p className="text-warning">{'no books to display'}</p> : <AllResultContainer
+                  books={books}
+                />
+              )
             )}
       </Fragment>
     );
