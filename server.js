@@ -7,7 +7,7 @@ const app = express();
 const apiKey = 'BMSw4WMQoJpDhgZUB0lQ';/*process.env.REACT_APP_API_KEY;*/
 
 // Serve the static files from the React app
-app.use(express.static(path.join(__dirname, 'client/public')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 // An api endpoint that returns a short list of items
 app.get('/api/getBooks', (req, res) => {
