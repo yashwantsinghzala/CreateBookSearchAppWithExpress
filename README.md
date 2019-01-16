@@ -1,10 +1,10 @@
-# **CreateReactBookSearchAppWith Express to Search Goodreads using express**
+# **CreateReactBookSearchApp to Search Goodreads using express**
 
 This application uses goodreads api to look for books by Title, Author or Isbn code.
 
 This project was bootstrapped with `create-react-app` and deployed live at
 
------NOT YET DEPLOYED----
+https://react-book-app-with-express.herokuapp.com
 
 # Running the application locally
 
@@ -17,33 +17,36 @@ https://github.com/yashwantsinghzala/CreateBookSearchAppWithExpress.git
 
 **Install dependencies:**
 
-run 
-
 npm install
 
- command for both client app dependency(open the command prompt on client folder) and  for server app. (open the command prompt on root of the application)
-   
+Note:
 
-    
+1. run the npm install to root of your directory in order to install express dependency.
+2. run the npn install to root of client directory in order to install react app dependency.
+example:
+cd CreateBookSearchAppWithExpress/client npm install
+
+   
 
 **Starting the application in development mode:**
 
-run 
 
 npm start
 
- command for both client app dependency(open the command prompt on client folder and run npm start command) and for server app. (open the command prompt on root of the application and run the command)
-
+1. run the npm start to root of your directory in order to install express dependency.
+2. run the npn start to root of client directory in order to install react app dependency.
+example:
+cd CreateBookSearchAppWithExpress/client npm start
 
 # Building the application:
 
 To build the production assets, run
 
-    npm run build
+    cd CreateBookSearchAppWithExpress/client build
 
 # Testing the App:(client folder)
 
-    npm test
+   cd CreateBookSearchAppWithExpress/client npm test
     
    Note: Written unit test cases for all reducer , some of the actions and react component to ensure it renders correctly on ui .nd 
 
