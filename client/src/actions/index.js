@@ -1,8 +1,9 @@
 import Axios from "axios";
-import { parseXMLResponseForSearch, parseXMLResponseForBookInfo } from '../utills'
+import { parseXMLResponseForSearch, parseXMLResponseForBookInfo, parseXMLResponseForAuthorInfo } from '../utills'
 import {
     REQUEST_BOOKS_LIST, RECEIVE_BOOKS_LIST, REQUEST_BOOK_DETAILS,
-    STORE_EXPANDED_BOOK, LOG_ERROR_BOOKDETAILS, LOG_ERROR_BOOK
+    STORE_EXPANDED_BOOK, LOG_ERROR_BOOKDETAILS, LOG_ERROR_BOOK, REQUEST_AUTH_DETAILS,
+    STORE_AUTHOR_DETAIL,LOG_ERROR_AUTHOR_DETAILS
 } from '../types'
 
 
@@ -26,6 +27,13 @@ export const logErrorforBook = (error) => {
     }
 }
 
+export const logErrorforAuthDetails = (error) => {
+    return {
+        type: LOG_ERROR_AUTHOR_DETAILS,
+        error
+    }
+}
+
 export const logErrorforBookDetails = (error) => {
     return {
         type: LOG_ERROR_BOOKDETAILS,
@@ -39,10 +47,23 @@ export const requestBookDetails = () => {
     }
 }
 
+export const requestAuthDetails = () => {
+    return {
+        type: REQUEST_AUTH_DETAILS
+    }
+}
+
 export const resetExpandedBook = (book) => {
     return {
         type: STORE_EXPANDED_BOOK,
         expandedBook: false
+    }
+}
+
+export const storeAuthorDetails = (details) => {
+    return {
+        type: STORE_AUTHOR_DETAIL,
+        authDetails: details
     }
 }
 
@@ -69,7 +90,7 @@ export const fetchBooks = (searchText) => {
 
 export const fetchBookDetails = (bookId) => {
     const requestUri = `/api/getBookDetails/${bookId}`;
-       
+
     return dispatch => {
         dispatch(requestBookDetails())
         return Axios.get(requestUri)
@@ -77,6 +98,20 @@ export const fetchBookDetails = (bookId) => {
                 parseXMLResponseForBookInfo(res.data))
             .then(json => dispatch(storeExpandedBook(json)))
             .catch(error => dispatch(logErrorforBookDetails(error.toString()))
+            );
+    }
+}
+
+export const fetchAuthorDetails = (authId) => {
+    const requestUri = `/api/getAuthor/${authId}`;
+
+    return dispatch => {
+        dispatch(requestAuthDetails())
+        return Axios.get(requestUri)
+            .then(res =>
+                parseXMLResponseForAuthorInfo(res.data))
+            .then(json => dispatch(storeAuthorDetails(json)))
+            .catch(error => dispatch(logErrorforAuthDetails(error.toString()))
             );
     }
 }

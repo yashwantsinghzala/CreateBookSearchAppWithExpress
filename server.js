@@ -26,6 +26,16 @@ app.get('/api/getBookDetails/:bookId', (req, res) => {
     });
 });
 
+app.get('/api/getAuthor/:authId', (req, res) => {
+    debugger;
+    const authId = req.params.authId;
+    let url = `https://www.goodreads.com/author/show/${authId}?key=${apiKey}`;;
+    request.get({ url }, function (error, response, body) {
+        res.json(body);
+    });
+});
+
+
 const port = process.env.PORT || 5000;
 app.listen(port);
 

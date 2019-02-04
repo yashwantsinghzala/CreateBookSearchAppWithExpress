@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const BookInfo = ({ bookData, resetExpandedBook, error }) => {
+const BookInfo = ({ bookData, resetExpandedBook, error, fetchAuthorDetails }) => {
     return (
         <div className="row book-info-container">
             <div className="col-lg-12 previous-btn-wrapper">
@@ -20,7 +20,15 @@ const BookInfo = ({ bookData, resetExpandedBook, error }) => {
                 />
                 <div>
                     <span className="font-weight-bold">By: </span>
-                    {bookData.authors.author.name}
+                    <button
+                        className="btn btn-primary"
+                        onClick={() => fetchAuthorDetails(bookData.authors.author.id)}
+                    >
+                        {bookData.authors.author.name}
+                    </button>
+
+
+
                 </div>
                 <div className="mb-3">
                     <span className="font-weight-bold">Avg. Rating: </span>

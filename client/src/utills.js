@@ -21,6 +21,14 @@ export const parseXMLResponseForBookInfo = response => {
     return searchResults;
 };
 
+export const parseXMLResponseForAuthorInfo = response => {
+   console.log(response);
+   // need to parse the response
+    return response;
+};
+
+
+
 
 // Function to convert simple XML document into JSON.
 // Loops through each child and saves it as key, value pair
