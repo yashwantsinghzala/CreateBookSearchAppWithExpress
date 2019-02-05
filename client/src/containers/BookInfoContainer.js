@@ -3,26 +3,41 @@ import { resetExpandedBook } from '../actions';
 import BookInfo from '../components/BookInfo';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { fetchAuthorDetails } from '../actions'
+import { fetchAuthorDetails, fetchBookDetails } from '../actions';
+import loaderImg from '../assets/loading.gif';
 
 class BookInfoContainer extends Component {
-  render() {
-    const { bookData, resetExpandedBook, bookDetailsError, fetchAuthorDetails } = this.props;
 
+  componentDidMount() {
+    const { match } = this.props;
+    this.props.fetchBookDetails(match.params.id);
+  }
+  render() {
+    const { bookData, resetExpandedBook, bookDetailsError, fetchAuthorDetails, fetchingBookDetails } = this.props;
+
+    if (fetchingBookDetails) {
+      return (
+        <div className="lead text-center">
+          <img src={loaderImg} alt="loading" />
+        </div>
+      );
+    }
     return (
-      <BookInfo fetchAuthorDetails={fetchAuthorDetails} error={bookDetailsError} bookData={bookData} resetExpandedBook={resetExpandedBook} />
+      !fetchingBookDetails && bookData && <BookInfo fetchAuthorDetails={fetchAuthorDetails} error={bookDetailsError} bookData={bookData} resetExpandedBook={resetExpandedBook} />
     );
   }
 }
 
 function mapStateToProps(state) {
   return {
+    bookData: state.bookDetail.expandedBook,
+    fetchingBookDetails: state.bookDetail.isFetching,
     bookDetailsError: state.bookDetail.bookDetailsError
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ resetExpandedBook: resetExpandedBook, fetchAuthorDetails }, dispatch);
+  return bindActionCreators({resetExpandedBook, fetchAuthorDetails, fetchBookDetails }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookInfoContainer);

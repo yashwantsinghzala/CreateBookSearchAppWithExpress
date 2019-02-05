@@ -7,7 +7,7 @@ import AuthorReducer from './AuthorReducer';
 const rootReducer = combineReducers({
     book: BookReducer,
     bookDetail: BookDetailsReducers,
-    author: AuthorReducer
+    authorDetail: AuthorReducer
 });
 
 export default rootReducer;

@@ -37,11 +37,11 @@ class SearchContainer extends Component {
 
 
   render() {
-    const { bookData, books, fetchingBooks, bookError, fetchingBookDetails } = this.props;
+    const {  books, fetchingBooks, bookError, fetchingBookDetails } = this.props;
 
-    if (bookData) {
-      return <BookInfoContainer bookData={this.props.bookData} />
-    }
+    // if (bookData) {
+    //   return <BookInfoContainer bookData={this.props.bookData} />
+    // }
     return (
       <Fragment>
         <div className="form-group row">
@@ -70,7 +70,7 @@ class SearchContainer extends Component {
         {/**
          * if fetching data, displays loader */}
         {
-          fetchingBooks || fetchingBookDetails ? (
+          fetchingBooks  ? (
             <div className="search-result-container">
               <div className="lead text-center">
                 <img src={loaderImg} alt="loading" />
@@ -101,10 +101,10 @@ SearchContainer.propTypes = {
 function mapStateToProps(state) {
   return {
     fetchingBooks: state.book.isFetching,
-    fetchingBookDetails: state.bookDetail.isFetching,
+    // fetchingBookDetails: state.bookDetail.isFetching,
     books: state.book.books,
     bookError: state.book.bookError,
-    bookData: state.bookDetail.expandedBook
+    // bookData: state.bookDetail.expandedBook
   }
 }
 

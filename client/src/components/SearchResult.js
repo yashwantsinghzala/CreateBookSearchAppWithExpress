@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from 'react-router-dom'
 
 const SearchResult = ({ bookData, fetchBookDetails }) => {
 
@@ -39,12 +40,11 @@ const SearchResult = ({ bookData, fetchBookDetails }) => {
             {bookData.best_book.author.name}
           </p>
 
-          <button
-            className="btn btn-primary"
-            onClick={() => fetchBookDetails(bookData.best_book.id)}
+          <Link to ={`/book/${bookData.best_book.id}`}
+        
           >
             More info &#8230;
-          </button>
+          </Link>
         </div>
       </div>
     </div>

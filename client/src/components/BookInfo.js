@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from 'react-router-dom'
 
 const BookInfo = ({ bookData, resetExpandedBook, error, fetchAuthorDetails }) => {
     return (
         <div className="row book-info-container">
             <div className="col-lg-12 previous-btn-wrapper">
-                <button className="btn btn-primary" onClick={resetExpandedBook}>
+                {/* <button className="btn btn-primary" onClick={resetExpandedBook}>
                     <span>&#171;</span> Go Back
-        </button>
+        </button> */}
             </div>
 
             <h3 className="col-lg-12 mb-3 mt-3">{bookData.title}</h3>
@@ -20,15 +21,10 @@ const BookInfo = ({ bookData, resetExpandedBook, error, fetchAuthorDetails }) =>
                 />
                 <div>
                     <span className="font-weight-bold">By: </span>
-                    <button
-                        className="btn btn-primary"
-                        onClick={() => fetchAuthorDetails(bookData.authors.author.id)}
+                    <Link to={`/author/${bookData.authors.author.id}`}
                     >
                         {bookData.authors.author.name}
-                    </button>
-
-
-
+                    </Link>
                 </div>
                 <div className="mb-3">
                     <span className="font-weight-bold">Avg. Rating: </span>
@@ -65,7 +61,6 @@ const BookInfo = ({ bookData, resetExpandedBook, error, fetchAuthorDetails }) =>
 
 BookInfo.propTypes = {
     bookData: PropTypes.object,
-    resetExpandedBook: PropTypes.object
 };
 
 export default BookInfo

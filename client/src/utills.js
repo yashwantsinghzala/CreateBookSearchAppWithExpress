@@ -1,3 +1,4 @@
+// import goodReadsJSONResponse from 'goodreads-json-api';
 
 // parse string xml received from goodreads api
 export const parseXMLResponseForSearch = response => {
@@ -21,10 +22,19 @@ export const parseXMLResponseForBookInfo = response => {
     return searchResults;
 };
 
-export const parseXMLResponseForAuthorInfo = response => {
-   console.log(response);
-   // need to parse the response
-    return response;
+export const parseXMLResponseForAuthorInfo = res => {
+    console.log(res);
+    // need to parse the response
+    // let jsonResponse = goodReadsJSONResponse.convertToJson(response);
+    // console.log(jsonResponse);
+    const parser = new DOMParser();
+    const XMLResponse = parser.parseFromString(res, "application/xml");
+    const XMLresults = new Array(...XMLResponse.getElementsByTagName("author"));
+    const searchResults = XMLToJson(XMLresults[0]);
+    Object.keys(searchResults).forEach(function (key, index) {
+        searchResults[key] = typeof searchResults[key] === 'string' ? searchResults[key].replace("<![CDATA[", "").replace("]]>", "") : searchResults[key];
+    });
+    return searchResults;
 };
 
 

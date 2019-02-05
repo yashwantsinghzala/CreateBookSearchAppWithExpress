@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import SearchContainer from "./containers/SearchContainer"
+import BookInfoContainer from './containers/BookInfoContainer';
+import AuthorInfoContainer from './containers/AuthorInfoContainer';
+import { Switch, Route, BrowserRouter } from 'react-router-dom'
 
 
 class App extends Component {
@@ -10,7 +13,13 @@ class App extends Component {
           <h3 className="text-muted">Goodreads Book Search</h3>
         </div>
         <div className="search-container">
-          <SearchContainer />
+          <BrowserRouter>
+            <Switch>
+              <Route exact path='/' component={SearchContainer}></Route>
+              <Route exact path='/book/:id' component={BookInfoContainer}></Route>
+              <Route exact path='/author/:id' component={AuthorInfoContainer}></Route>
+            </Switch>
+          </BrowserRouter>
         </div>
       </div>
     );
