@@ -23,7 +23,6 @@ export const parseXMLResponseForBookInfo = response => {
 };
 
 export const parseXMLResponseForAuthorInfo = res => {
-    console.log(res);
     // need to parse the response
     // let jsonResponse = goodReadsJSONResponse.convertToJson(response);
     // console.log(jsonResponse);

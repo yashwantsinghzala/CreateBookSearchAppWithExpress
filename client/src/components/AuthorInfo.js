@@ -1,16 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const AuthorInfo = ({ author, resetExpandedBook,error }) => {
-    console.log(this.props);
-    return (
+const AuthorInfo = ({ author, resetExpandedBook, error }) => {
+      return (
         <div className="row author-info-container">
-            <div className="col-lg-12 previous-btn-wrapper">
-                {/* <button className="btn btn-primary" onClick={resetExpandedBook}>
-                    <span>&#171;</span> Go Back
-        </button> */}
-            </div>
-
             <h3 className="col-lg-12 mb-3 mt-3">{author.name}</h3>
             <div className="col-lg-2 col-sm-4 ">
                 <img
@@ -19,6 +12,22 @@ const AuthorInfo = ({ author, resetExpandedBook,error }) => {
                     width="100%"
                     alt="book cover"
                 />
+            </div>
+            <div className="col-lg-10 col-sm-8">
+                <div>
+                    <span className="font-weight-bold">Born: </span>
+                    {author.hometown} {author.born_at}
+                </div>
+                <div className="mb-3">
+                    <span className="font-weight-bold">gender: </span>
+                    {author.gender}
+                </div>
+                {(
+                    error && (
+                        <p className="text-danger">{error}</p>
+                    )) || (
+                        <p dangerouslySetInnerHTML={{ __html: author.about }} />
+                    )}
             </div>
         </div>
     );
